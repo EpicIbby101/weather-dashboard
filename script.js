@@ -24,6 +24,46 @@ function fetchWeatherData(city) {
     });
 }
 
+function fetchWeatherForecast(city) {
+    const apiKey = 'aa57fc75af5a470d19c3d65bd59460fa'; 
+    const forecastURL = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
+  
+    return fetch(forecastURL)
+      .then((response) => response.json())
+      .then((data) => data.list);
+  }
+  
+  function displayForecastCards(city) {
+    fetchWeatherForecast(city)
+      .then((forecastData) => {
+        const forecastSection = $('#forecast');
+        forecastSection.empty(); 
+  
+        for (let i = 0; i < 5; i++) {
+          const forecast = forecastData[i * 8]; 
+  
+          const date = new Date(forecast.dt * 1000);
+          const dateString = date.toDateString();
+  
+          const card = `
+            <div class="col-md-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">${dateString}</h5>
+                  <p class="card-text">Weather: ${forecast.weather[0].description}</p>
+                  <p class="card-text">Temp: ${forecast.main.temp}°C</p>
+                  <p class="card-text">Humidity: ${forecast.main.humidity}%</p>
+                  <p class="card-text">Wind Speed: ${forecast.wind.speed} m/s</p>
+                </div>
+              </div>
+            </div>
+          `;
+  
+          forecastSection.append(card);
+        }
+      });
+  }
+
 let searchHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
 
 function updateSearchHistory() {
@@ -59,17 +99,14 @@ $("#search-form").submit(function (event) {
 
   if (city) {
     const existingIndex = searchHistory.indexOf(city);
-
     if (existingIndex !== -1) {
       searchHistory.splice(existingIndex, 1);
     }
-
     searchHistory.unshift(city);
-
     if (searchHistory.length > 5) {
       searchHistory.pop();
     }
-
+    displayForecastCards(city);
     updateSearchHistory();
 
     fetchWeatherData(city).then((data) => {
@@ -104,3 +141,4 @@ $("#clear-history-button").click(function () {
     clearSearchHistory();
   }
 });
+
