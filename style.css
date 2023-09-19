@@ -30,18 +30,44 @@
   }
 
 #history {
-  /* max-height: 200px;  */
   overflow-y: auto;
   margin-top: 10px; 
 }
 
+#clear-history-button {
+  margin-top: 10px;
+  align-items: stretch;
+  width: 100%;
+}
+
 .list-group-item {
   cursor: pointer;
-  border: none; 
+  border: 1px solid #000000;
+  padding: 20px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  color: #333;
+}
+
+.list-group-item h4 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.list-group-item p:nth-child(2) {
+  font-size: 1.2rem;
+}
+
+.list-group-item p:nth-child(n+4) {
+  font-size: 1rem;
+  color: #444;
 }
 
 .list-group-item:hover {
   background-color: #f8f9fa; 
 }
+
 
   
