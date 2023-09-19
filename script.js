@@ -36,7 +36,6 @@ $('#search-form').submit(function (event) {
         fetchWeatherData(city)
             .then((data) => {
                 if (data) {
-                    // Display weather data in the list
                     const weatherInfo = `
                         <div class="list-group-item">
                             <h4>${data.name}, ${data.sys.country}</h4>
@@ -47,9 +46,10 @@ $('#search-form').submit(function (event) {
                         </div>
                     `;
 
-                    $('#history').prepend(weatherInfo);
+                    $('#today').html(weatherInfo);
                 }
             });
     }
 });
+
 

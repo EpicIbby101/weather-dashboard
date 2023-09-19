@@ -1,29 +1,31 @@
-/* Style for the search form */
 #search-form {
-    margin-top: 20px; /* Add some top margin for spacing */
+    margin-top: 5px; 
   }
   
-  /* Style for the input group */
   .input-group {
     width: 100%;
-    max-width: 400px; /* Adjust the maximum width as needed */
+    max-width: 400px; 
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column; 
+    align-items: stretch;
   }
   
-  /* Style for the search input */
   .weather-search {
-    flex-grow: 1;
-    border-radius: 0; /* Remove border-radius */
+    width: 100%;
+    max-width: 400px; 
+    margin-bottom: 10px; 
   }
   
-  /* Style for the search button */
   .search-button {
-    border-top-left-radius: 0; /* Remove rounded corners on the left side */
-    border-bottom-left-radius: 0;
+    border-radius: 0;
+    width: 100%;
   }
   
-  /* Style for the horizontal line */
   .hr {
-    margin-bottom: 0; /* Remove extra margin at the bottom */
-    margin-top: 0; /* Remove extra margin at the top */
+    margin-bottom: 0; 
+    margin-top: 0; 
   }
   
